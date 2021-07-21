@@ -5,7 +5,7 @@
 :root {
     --color-text: #666;    /*文字颜色*/
     --color-high-text: #ff5777;     /*文字高亮颜色*/
-    --color-tint: #ff8198;      /*背景颜色 例如导航栏背景*/
+    --color-tint: deepskyblue;      /*背景颜色 例如导航栏背景*/
     --color-background: #fff;   /*主背景颜色*/
     --font-size: 14px;      /*字体大小*/
     --line-height: 1.5;
