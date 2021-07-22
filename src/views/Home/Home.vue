@@ -13,71 +13,14 @@
     <home-recommend-view :recommend="recommend"/>
 
     <!--热门推荐-->
-    <HomeFeatureView/>
+    <home-feature-view/>
 
     <!--浮动分类栏-->
-    <TabControl :titles="['流行','新款','精选']" class="tabcontrol"/>
+    <tab-control :titles="['流行','新款','精选']" class="tabcontrol" @tabClick="ControlClick"/>
 
-    <ul>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li><li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li><li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-    </ul>
+    <!--商品页-->
+    <goods-list  :goods="goods[currentType].list"/>
+
   </div>
 </template>
 
@@ -87,6 +30,7 @@
     import HomeRecommendView from "../Home/childComponents/HomeRecommendView"
     import HomeFeatureView from "../Home/childComponents/HomeFeatureView"
     import TabControl from "../../components/content/tabControl/TabControl"
+    import GoodsList from "../../components/content/goods/GoodsList"
 
     import {getHomeMultidata,getHomeGoods} from "../../network/home";
 
@@ -97,7 +41,8 @@
           HomeCarousel,
           HomeRecommendView,
           HomeFeatureView,
-          TabControl
+          TabControl,
+          GoodsList
         },
         data(){
           return {
@@ -107,26 +52,52 @@
               'pop':{page:0, list:[]},
               'new':{page:0, list:[]},
               'sell':{page:0, list:[]}
-            }
+            },
+            currentType:'pop'
           }
         },
         created(){
           //在组件创建时请求首页的数据
           this.mulitidata()
 
+          this.homegoods('pop')
+          this.homegoods('new')
+          this.homegoods('sell')
           //请求商品数据
-          getHomeGoods('pop',1).then(res => {
-            console.log(res);
-          })
+
         },
         methods:{
+          //事件监听相关
+          ControlClick(index){
+            switch(index){
+              case 0:
+                this.currentType = 'pop'
+                break;
+              case 1:
+                this.currentType = 'new'
+                break;
+              case 2:
+                this.currentType = 'sell'
+                break;
+            }
+          },
+
+          //网络请求相关
           mulitidata(){
             getHomeMultidata().then(res => {
               console.log(res);
               this.banner = res.data.data.banner.list
               this.recommend = res.data.data.recommend.list
             })
-          }
+          },
+          homegoods(type){
+            const page = this.goods[type].page + 1 //配置页数并传入方法  这里不会改变goods里面的页数是临时变量
+            getHomeGoods(type,page).then(res => {
+              console.log(res);
+              this.goods[type].list.push(...res.data.data.list)
+              this.goods[type].page += 1
+            })
+          },
         }
     }
 </script>
@@ -163,6 +134,7 @@
     /*让其滚动到指定位置时脱离*/
     position: sticky;
     top: 44px;
+    z-index:1;
   }
 
 </style>

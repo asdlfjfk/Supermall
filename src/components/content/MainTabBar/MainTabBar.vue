@@ -1,5 +1,5 @@
 <template>
-  <TabBar>
+  <TabBar class="tabbar">
 
     <tab-bar-item link="/home">
       <img src="~assets/img/tabbar/Home.svg" slot="item-icon">
@@ -47,5 +47,7 @@
 </script>
 
 <style scoped>
-
+.tabbar{
+  z-index: 10;
+}
 </style>
