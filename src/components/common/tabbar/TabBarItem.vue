@@ -48,10 +48,10 @@
     font-size:14px;font-weight:bold;
     padding:4px;
     filter:
-      Dropshadow(offx=1,offy=0,color=deepskyblue)
-      Dropshadow(offx=0,offy=1,color=deepskyblue)
-      Dropshadow(offx=0,offy=-1,color=deepskyblue)
-      Dropshadow(offx=-1,offy=0,color=deepskyblue);
+      Dropshadow(offx=1,offy=0)
+      Dropshadow(offx=0,offy=1)
+      Dropshadow(offx=0,offy=-1)
+      Dropshadow(offx=-1,offy=0);
     color: #708090;
   }
 
