@@ -63,7 +63,4 @@
     margin-bottom: 1px;
   }
 
-  .active {
-    color: deepskyblue;
-  }
 </style>

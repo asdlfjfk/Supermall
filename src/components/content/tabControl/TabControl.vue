@@ -19,7 +19,7 @@
         },
       data(){
           return{
-           currentIndex:0
+           currentIndex:0,
           }
       },
       methods:{
@@ -28,7 +28,7 @@
           //子传父
           this.$emit('tabClick',index)
         }
-      }
+      },
     }
 </script>
 

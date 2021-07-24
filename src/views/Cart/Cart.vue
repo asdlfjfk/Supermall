@@ -28,5 +28,11 @@
   }
   #navcart{
     background-color: var(--color-tint);
+
+    position: fixed; /*使导航栏脱离 上下滚动时不跟着动*/
+    left: 0;
+    right:0;
+    top: 0;
+    z-index:9; /*使脱离的导航栏显示*/
   }
 </style>
