@@ -45,14 +45,18 @@
           })
 
           //监听滚动位置
-          this.scroll.on('scroll',(position) => {
-            this.$emit('scroll',position) //将事件传出去 在BScroll中完成事件不合适
-          })
+          if(this.probe === 2 || this.probe === 3) {
+            this.scroll.on('scroll', (position) => {
+              this.$emit('scroll', position) //将事件传出去 在BScroll中完成事件不合适
+            })
+          }
 
-          //监听上拉事件
-          this.scroll.on('pullingUp',() => {
-            this.$emit('pullingUp')
-          })
+          // 监听上拉事件
+          if(this.pullup) {
+            this.scroll.on('pullingUp', () => {
+              this.$emit('pullingUp')
+            })
+          }
         },
         methods:{
             //500为默认值 传参可以修改
@@ -61,7 +65,12 @@
           },
 
           finishpullup(){
-            this.scroll.finishPullUp()
+            //先判断scroll有没有值 有值再执行finishPullUp 增加严谨性
+            this.scroll && this.scroll.finishPullUp()
+          },
+
+          refresh(){
+            this.scroll && this.scroll.refresh()
           }
         }
     }

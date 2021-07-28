@@ -1,8 +1,6 @@
 <template>
-    <div class="goods-item">
-      <a :href="goodsitem.link">
-        <img :src="goodsitem.show.img">
-      </a>
+    <div class="goods-item" @click="itemClick">
+        <img :src="showImage" @load="imgload">
 
       <div class="goods-info">
         <p>{{goodsitem.title}}</p>
@@ -22,7 +20,29 @@
               return {}
             }
           }
+        },
+      methods:{
+          //监听图片加载
+        imgload(){
+          if (this.$route.path === '/home'){
+            this.$bus.$emit('imgload')
+          }
+          if (this.$route.path === '/detail'){
+            this.$bus.$emit('imgload2')
+          }
+        },
+        itemClick(){
+          //商品详情页跳转更合适push而不是replace 可以更好的返回
+          this.$router.push('/detail/' + this.goodsitem.iid).catch(err => {
+            console.log(err);
+          })
         }
+      },
+      computed: {
+        showImage(){
+          return  this.goodsitem.img || this.goodsitem.image || this.goodsitem.show.img
+        }
+      },
     }
 </script>
 

@@ -8,6 +8,8 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+Vue.prototype.$bus = new Vue()  //使用Vue实例new一个事件总线
+
 new Vue({
   render: h => h(App),
   router
