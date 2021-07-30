@@ -1,5 +1,6 @@
 <template>
   <div v-if="Object.keys(commentInfo).length != 0" class="comment-info">
+
     <div class="info-header">
       <div class="header-title">用户评价</div>
       <div class="header-more">
@@ -41,7 +42,10 @@
     },
     filters: {
       showDate(value){
+        //先将时间戳*1000转换成秒 并转化为date对象
         const  date = new Date(value * 1000)
+
+        //将date对象格式化
         return formatDate(date,'yyyy-MM-dd hh:mm:ss')
       }
     }

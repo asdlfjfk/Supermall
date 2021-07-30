@@ -1,7 +1,7 @@
 <template>
     <el-carousel class="carousel">
       <el-carousel-item v-for="item in topImages" :key="item.index" class="item">
-        <img :src="item">
+        <img :src="item" @load="loadimg">
       </el-carousel-item>
     </el-carousel>
 </template>
@@ -9,6 +9,11 @@
 <script>
     export default {
         name: "DetailCarousel",
+        data(){
+          return{
+            isLoad:false
+          }
+        },
         props:{
             topImages:{
               type:Array,
@@ -16,7 +21,16 @@
                 return[]
               }
             }
+        },
+      methods:{
+        loadimg(){
+          if (!this.isLoad)
+          {
+            this.$emit('imgload')
+            this.isLoad = true
+          }
         }
+      }
     }
 </script>
 

@@ -22,7 +22,7 @@
 <script>
   import NavBar from '../../../components/common/navbar/NavBar'
     export default {
-        name: "DetailNavBar",
+      name: "DetailNavBar",
       data(){
         return{
           titles:['商品','参数','评论','推荐'],
@@ -36,6 +36,7 @@
           //根据传入的index 控制哪个选项变色
         titleClick(index){
           this.currentIndex = index
+          this.$emit('titleclick',index)
         },
         backClick(){
           this.$router.back()

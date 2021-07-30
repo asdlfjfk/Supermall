@@ -24,17 +24,20 @@
       methods:{
           //监听图片加载
         imgload(){
-          if (this.$route.path === '/home'){
+          //判断当前路由路径是否包含/home或者/detail
+          //以此来确定加载的是详情页推荐的商品图片还是主页的商品图片 以及发射对应的事件
+          //然后在Detail中接收事件并处理
+          if (this.$route.path.match(RegExp('/home'))){
             this.$bus.$emit('imgload')
           }
-          if (this.$route.path === '/detail'){
+          else if (this.$route.path.match(RegExp('/detail'))){
             this.$bus.$emit('imgload2')
           }
         },
         itemClick(){
           //商品详情页跳转更合适push而不是replace 可以更好的返回
           this.$router.push('/detail/' + this.goodsitem.iid).catch(err => {
-            console.log(err);
+            console.log('商品不存在');
           })
         }
       },

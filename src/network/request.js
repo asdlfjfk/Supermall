@@ -47,7 +47,6 @@ export function request2(config) {
     //请求拦截
     instance.interceptors.request.use(
       config => {
-        // console.log(config);
         return config
       },error => {
         console.log(err);

@@ -28,7 +28,7 @@
         },
         methods:{
           //监听轮播图加载完成
-          //只需要一次
+          //只需要一张图的高度不需要等待所有图片加载完成
           carouselload(){
             if (!this.isLoad)
             {
