@@ -163,7 +163,7 @@
             const positionY = -position.y  //当前滚动位置
             //根据滚动位置 分类栏实时更新
 
-            if ((positionY === this.themeTop[0]) || (positionY > this.themeTop[0] && positionY < this.themeTop[1])) {
+            if  (positionY >= this.themeTop[0] && positionY < this.themeTop[1]) {
               if (this.currentIndex != 0){
                 this.currentIndex = 0
                 this.$refs.nav.currentIndex = this.currentIndex
@@ -171,7 +171,7 @@
             }
             //若评论为空
             else if (this.themeTop[2] === undefined) {
-              if ((positionY === this.themeTop[1]) || (positionY > this.themeTop[1] && positionY < this.themeTop[3])) {
+              if (positionY >= this.themeTop[1] && positionY < this.themeTop[3]) {
                 if (this.currentIndex != 1){
                   this.currentIndex = 1
                   this.$refs.nav.currentIndex = this.currentIndex
@@ -180,20 +180,20 @@
             }
             //若评论不为空
             else if (this.themeTop[2] !== undefined){
-              if ((positionY === this.themeTop[1]) || (positionY > this.themeTop[1] && positionY < this.themeTop[2])) {
+              if (positionY >= this.themeTop[1] && positionY < this.themeTop[2]) {
                 if (this.currentIndex != 1){
                   this.currentIndex = 1
                   this.$refs.nav.currentIndex = this.currentIndex
                 }
               }
-              if ((positionY === this.themeTop[2]) || (positionY > this.themeTop[2] && positionY < this.themeTop[3])) {
+              if (positionY >= this.themeTop[2] && positionY < this.themeTop[3]) {
                 if (this.currentIndex != 2){
                   this.currentIndex = 2
                   this.$refs.nav.currentIndex = this.currentIndex
                 }
               }
             }
-            if(positionY === this.themeTop[3] || positionY > this.themeTop[3]){
+            if( positionY >= this.themeTop[3]){
               if (this.currentIndex != 3){
                 this.currentIndex = 3
                 this.$refs.nav.currentIndex = this.currentIndex
