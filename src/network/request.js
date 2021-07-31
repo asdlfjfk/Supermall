@@ -41,7 +41,7 @@ export function request2(config) {
   return new Promise((resolve,reject) => {
     const instance = axios.create({
       //创建实例
-      baseURL:'接口加微信t2980618719',
+      baseURL:'接口加老师微信',
       timeout:5000
     })
     //请求拦截

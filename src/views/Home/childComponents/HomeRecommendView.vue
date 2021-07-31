@@ -3,7 +3,7 @@
 
       <div v-for="item in recommend" class="recommend-item">
         <a :href="item.link">
-          <img :src="item.image">
+          <img :src="item.image" @load="homereload">
           <div>{{item.title}}</div>
         </a>
       </div>
@@ -20,6 +20,11 @@
           default(){
             return []
           }
+        }
+      },
+      methods:{
+        homereload(){
+          this.$emit('homereload')
         }
       }
     }

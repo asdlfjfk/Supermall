@@ -15,10 +15,10 @@
         <home-carousel :banner="banner" @carouselload="carouselloadimg"/>
 
         <!--推荐-->
-        <home-recommend-view :recommend="recommend"/>
+        <home-recommend-view :recommend="recommend" @homereload="homerecommend"/>
 
-        <!--热门推荐-->
-        <home-feature-view/>
+        <!--本周流行-->
+        <home-feature-view @featureload="featureimgload"/>
 
         <!--浮动分类栏-->
         <tab-control :titles="['流行','新款','精选']"  @tabClick="ControlClick" ref="tabControl2"/>
@@ -34,19 +34,18 @@
 </template>
 
 <script>
-    import NavBar from "../../components/common/navbar/NavBar";
+    import NavBar from "components/common/navbar/NavBar";
     import HomeCarousel from "../Home/childComponents/HomeCarousel"
     import HomeRecommendView from "../Home/childComponents/HomeRecommendView"
     import HomeFeatureView from "../Home/childComponents/HomeFeatureView"
-    import TabControl from "../../components/content/tabControl/TabControl"
-    import GoodsList from "../../components/content/goods/GoodsList"
-    import bscroll from "../../components/common/better-scroll/BScroll"
-    import BackTop from "../../components/content/backtop/BackTop"
+    import TabControl from "components/content/tabControl/TabControl"
+    import GoodsList from "components/content/goods/GoodsList"
+    import bscroll from "components/common/better-scroll/BScroll"
 
     import {getHomeMultidata,getHomeGoods} from "../../network/home";
 
     import {debounce} from "../../common/utils";
-
+    import {backTopMixin} from "../../common/mixin";
 
     export default {
         name: "Home",
@@ -57,10 +56,10 @@
           HomeFeatureView,
           TabControl,
           GoodsList,
-          bscroll,
-          BackTop
+          bscroll
         },
-
+        //混入 回到顶部功能
+        mixins:[backTopMixin],
         data(){
           return {
             banner:[],
@@ -71,10 +70,9 @@
               'sell':{page:0, list:[]}
             },
             currentType:'pop',
-            isShowBacktop:false,
             offsetTop:0,
             controlshow:false,
-            saveY:0
+            saveY:0,
           }
         },
         created(){
@@ -133,22 +131,12 @@
           //监听滚动区域
           contentScroll(position){
               //三目运算符 这里先给y值加上负号取证再对比 决定回到顶部图标是否显示
-            this.isShowBacktop = (-position.y) > 2000
+              this.showbacktop(position)
 
             //决定tabControl是否吸顶
             //若y值超过了offsetTop值 controlshow为true 吸顶显示
             this.controlshow = (-position.y) > this.offsetTop
-
-
           },
-
-          //回到顶部
-          backTopClick(){
-            //获取组件对象this.$refs.Scroll
-            this.$refs.Scroll.back(0,0,1000)
-            console.log(this.$refs.Scroll.message);
-          },
-
           //上拉加载
           pullup(){
             this.homegoods(this.currentType)  //当前选中哪个就加载哪个
@@ -184,7 +172,17 @@
             //获取tabControl的offsetTop值
             //所有组件都有一个属性$el用于获取组件中的元素
             this.offsetTop = this.$refs.tabControl2.$el.offsetTop
-          }
+          },
+          homerecommend(){
+            this.offsetTop = this.$refs.tabControl2.$el.offsetTop
+          },
+          featureimgload(){
+            this.offsetTop = this.$refs.tabControl2.$el.offsetTop
+          },
+
+          backTopClick(){
+            this.$refs.Scroll.back(0,0,800)
+          },
         }
     }
 </script>

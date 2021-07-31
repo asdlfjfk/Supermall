@@ -1,22 +1,41 @@
 <template>
-  <div id="cart">
+  <div class="cart">
+    <!--导航-->
     <nav-bar id="navcart">
-      <div slot="center" align="center" id="main">购物车</div>
+      <div slot="center" align="center" class="main" v-if="length !== 0">购物车({{length}})</div>
+      <div slot="center" align="center" class="main" >购物车</div>
     </nav-bar>
+
+    <!--购物车商品列表-->
+    <cart-list/>
+
+    <!--底部商品价格汇总-->
+    <cart-bottom-bar/>
   </div>
 
 </template>
 
 <script>
-  import NavBar from "../../components/common/navbar/NavBar";
+  import NavBar from 'components/common/navbar/NavBar';
+  import CartList from './childComponents/CartList'
+  import CartBottomBar from './childComponents/CartBottomBar'
+  import { mapGetters } from 'vuex'
+
     export default {
         name: "Cart",
-      components: {NavBar}
+        components: {NavBar,CartList,CartBottomBar},
+        computed:{
+          // ...mapGetters(['cartLength','cartList'])
+          ...mapGetters({
+            length:'cartLength',
+            List:'cartList'
+          })
+        },
     }
 </script>
 
 <style scoped>
-  #main{
+  .main{
     font-size:14px;font-weight:bold;
     padding:4px;
     filter:
@@ -34,5 +53,9 @@
     right:0;
     top: 0;
     z-index:9; /*使脱离的导航栏显示*/
+  }
+
+  .cart{
+    height: 100vh;
   }
 </style>
