@@ -55,13 +55,15 @@
             }
             else {
               if (this.isSelectAll === true){
-                  for (let item of this.cartList){
-                    item.checked = false
-                  }
+                  // for (let item of this.cartList){
+                  //   item.checked = false
+                  // }
+                  this.cartList.forEach(item => item.checked = false)
               }else {
-                for (let item of this.cartList){
-                  item.checked = true
-                }
+                // for (let item of this.cartList){
+                //   item.checked = true
+                // }
+                this.cartList.forEach(item => item.checked = true)
               }
             }
           }

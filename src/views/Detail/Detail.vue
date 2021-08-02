@@ -54,6 +54,7 @@
   import {debounce} from "../../common/utils";
   import {backTopMixin} from "../../common/mixin";
 
+
     export default {
         name: "Detail",
         data(){
@@ -210,7 +211,10 @@
             this.$refs.bscroll.back(0,0,800)
           },
           addToCart(){
-            alert('加入购物车成功!');
+            this.$message({
+              message:'加入购物车成功!',
+              type:'success'
+            })
             //1.获取购物车需要展示的信息
             const product = {}
             product.image = this.TopImages[0]

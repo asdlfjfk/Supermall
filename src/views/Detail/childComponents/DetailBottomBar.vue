@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="bar-item bar-right">
-      <div class="cart" @click="addToCart">加入购物车</div>
+      <el-button class="cart" @click="addToCart">加入购物车</el-button>
       <div class="buy">购买</div>
     </div>
   </div>
