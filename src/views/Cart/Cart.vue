@@ -58,4 +58,5 @@
   .cart{
     height: 100vh;
   }
+
 </style>

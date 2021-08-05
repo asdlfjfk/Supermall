@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home = () => import('../views/Home/Home.vue')
-const Classify = () => import('../views/Classify/Classify.vue')
+const Category = () => import('../views/Category/Category.vue')
 const Cart = () => import('../views/Cart/Cart.vue')
 const Mine = () => import('../views/Mine/Mine.vue')
 const Detail = () => import('../views/Detail/Detail.vue')
@@ -21,8 +21,8 @@ const routes = [
     component: Home
   },
   {
-    path:'/classify',
-    component: Classify
+    path:'/category',
+    component: Category
   },
   {
     path:'/mine',

@@ -1,4 +1,4 @@
-import BackTop from "../components/content/backtop/BackTop"
+import BackTop from "components/content/backtop/BackTop"
 export const backTopMixin = {
   data(){
     return{

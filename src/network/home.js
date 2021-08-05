@@ -16,3 +16,4 @@ export function getHomeGoods(type,page) {
     }
   })
 }
+

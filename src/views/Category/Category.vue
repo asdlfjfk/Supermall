@@ -1,31 +1,31 @@
 <template>
-  <div id="classify">
-    <nav-bar id="navclassify">
+  <div class="category">
+    <nav-bar id="navcategory">
       <div slot="center" align="center" id="main">分类</div>
     </nav-bar>
+
+    <div class="main">
+      <categoryLeft/>
+      <categoryRight/>
+    </div>
 
   </div>
 </template>
 
 <script>
   import NavBar from "../../components/common/navbar/NavBar";
+  import categoryLeft from './childcomponents/categoryLeft'
+  import categoryRight from './childcomponents/categoryRight'
+  import bscroll from "components/common/better-scroll/BScroll"
 
     export default {
-      name: "Classify",
-      components: {NavBar},
-      // mounted(){
-      //   //probeType: 3 监听滚动位置
-      //   this.scroll = new BScroll(document.querySelector('.wrapper'),{
-      //     probeType: 3,
-      //     pullUpLoad:true
-      //   })
-      //   this.scroll.on('scroll',(position) => {
-      //     console.log(position);  //打印滚动位置
-      //   })
-      //   this.scroll.on('pullingUp',() => {
-      //     console.log('上拉加载更多');
-      //   })
-      // }
+      name: "Category",
+      components: {
+        NavBar,
+        categoryLeft,
+        categoryRight,
+        bscroll
+      },
     }
 </script>
 
@@ -42,7 +42,7 @@
       Dropshadow(offx=-1,offy=0);
     color:#fff;
   }
-  #navclassify{
+  #navcategory{
     background-color: var(--color-tint);
 
     position: fixed; /*使导航栏脱离 上下滚动时不跟着动*/
@@ -52,11 +52,27 @@
     z-index:9; /*使脱离的导航栏显示*/
   }
 
+  .category{
+    height: 100vh;
+    width: 100%;
+  }
 
+  .content{
+    margin-top: 44px;
+  }
 
+  .control{
+
+  }
   /*.wrapper{*/
     /*height: 150px;*/
     /*background-color: deepskyblue;*/
     /*overflow: hidden;*/
   /*}*/
+
+  .main {
+    display: flex;
+    font-size: 0.7rem;
+    height: calc(100vh - 2.09rem - 1.9rem);
+  }
 </style>

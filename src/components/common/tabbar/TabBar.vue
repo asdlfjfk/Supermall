@@ -13,15 +13,17 @@
 <style scoped>
   #tab-bar {
     display: flex;
-    background-color: white;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 15px;
 
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 10px;
+    right: 10px;
+    bottom: 14px;
 
     /*阴影*/
-    box-shadow: 0px -1px 1px rgba(100,100,100,0.4);
+    box-shadow: 0px 0px 0px 1px rgba(100,100,100,0.2);
+
   }
 
 </style>

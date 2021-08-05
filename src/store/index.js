@@ -21,22 +21,28 @@ const store = new Vuex.Store({
   },
   actions:{
     addTocartList(context,payload){
-      //payload：添加的商品
 
-      if(context.state.cartList.length === 0){
-        context.state.cartList.push(payload)
-      }
-      else if (context.state.cartList.length !== 0) {
-        //查找之前数组中是否存在该商品
-        let product = context.state.cartList.find(item => item.iid === payload.iid)
-        if (product){
-          // product.count += 1
-          context.commit('addCounter',product)
-        }else {
-          // context.state.cartList.push(payload)
-          context.commit('addgoods',payload)
+      return new Promise((resolve,reject) => {
+        //payload：添加的商品
+        if(context.state.cartList.length === 0){
+          context.state.cartList.push(payload)
         }
-      }
+        else if (context.state.cartList.length !== 0) {
+          //查找之前数组中是否存在该商品
+          let product = context.state.cartList.find(item => item.iid === payload.iid)
+          if (product){
+            // product.count += 1
+            context.commit('addCounter',product)
+            resolve('商品数量加一')
+          }else {
+            // context.state.cartList.push(payload)
+            context.commit('addgoods',payload)
+            resolve('添加商品成功')
+          }
+        }
+      })
+
+
     }
   },
   getters

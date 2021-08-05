@@ -24,7 +24,7 @@
         <tab-control :titles="['流行','新款','精选']"  @tabClick="ControlClick" ref="tabControl2"/>
 
         <!--商品页-->
-        <goods-list  :goods="goods[currentType].list"/>
+        <goods-list :goods="goods[currentType].list"/>
     </bscroll>
 
     <!--回到顶部按钮  .native使组件可以监听事件-->
@@ -101,7 +101,7 @@
         },
         activated(){
           //读取并回到先前的浏览状态
-          this.$refs.Scroll.scroll.scrollTo(0,this.saveY, 0)
+          this.$refs.Scroll.scroll.scrollTo(0,this.saveY,1)
           this.$refs.Scroll.refresh()
         },
         deactivated(){
@@ -156,7 +156,6 @@
 
           //请求商品数据
           homegoods(type){
-
             //取出当前页码
             const page = this.goods[type].page + 1 //配置页数并传入方法  这里不会改变goods里面的页数是临时变量
             getHomeGoods(type,page).then(res => {
@@ -227,7 +226,7 @@
   /*}*/
 
   .content{
-    height: calc(100% - 44px - 14px );
+    height: calc(100% - 44px - 6.5px );
     /*margin-top: 44px;*/
     overflow: hidden;
     position: absolute;

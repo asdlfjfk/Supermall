@@ -1,6 +1,5 @@
 <template>
     <div class="bottom-bar">
-
       <div class="check-content" @click="allCheck">
         <check-button class="check-button" :is-checked="isSelectAll"/>
         <span>全选</span>
@@ -9,7 +8,7 @@
       <div class="count">
         合计:{{totalPrice}}
       </div>
-      <div class="calc">去结算:{{checklength}}</div>
+      <el-button class="calc" @click="Settlement">去结算:({{checklength}})</el-button>
     </div>
 </template>
 
@@ -66,6 +65,26 @@
                 this.cartList.forEach(item => item.checked = true)
               }
             }
+          },
+          Settlement(){
+            if (this.cartList.length === 0) {
+              this.$message({
+                message:'当前购物车没有商品哦~',
+                type:'warning',
+                offset:44
+              })
+            }
+            else {
+              if (this.checklength === 0) {
+                this.$message({
+                  message:'请至少选中一件商品',
+                  type:'warning',
+                  offset:44
+                })
+              }else {
+                alert('支付成功:' + this.totalPrice + '元')
+              }
+            }
           }
         },
         components:{
@@ -81,6 +100,13 @@
   display: flex;
   height: 40px;
   line-height: 40px;
+
+  left: 10px;
+  bottom: 24px;
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,0.2);
+  border-radius: 4px;
+
+  margin-right: 20px;
 }
 
 .check-button{
@@ -105,7 +131,7 @@
 }
 
 .calc{
-  width: 90px;
+  width: 100px;
   color: white;
   text-align: center;
   background-color: orangered;

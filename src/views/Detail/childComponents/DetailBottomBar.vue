@@ -16,7 +16,7 @@
     </div>
     <div class="bar-item bar-right">
       <el-button class="cart" @click="addToCart">加入购物车</el-button>
-      <div class="buy">购买</div>
+      <div class="buy" @click="buy">购买</div>
     </div>
   </div>
 </template>
@@ -27,6 +27,9 @@
     methods: {
       addToCart(){
         this.$emit('addCart')
+      },
+      buy(){
+        this.$emit('buy')
       }
     }
   }
@@ -42,6 +45,7 @@
     bottom: 0;
     display: flex;
     text-align: center;
+    box-shadow: 0px -1px 0px rgba(100,100,100,0.2);
   }
   .bar-item {
     flex: 1;

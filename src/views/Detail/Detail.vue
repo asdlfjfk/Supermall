@@ -30,10 +30,11 @@
         </div>
       </scroll>
 
+      <!--回到顶部-->
       <back-top @click.native="backTopClick" v-show="isShowBacktop"/>
 
       <!--详情页底部工具栏-->
-      <detail-bottom-bar @addCart="addToCart"/>
+      <detail-bottom-bar @addCart="addToCart" @buy="buy"/>
     </div>
 </template>
 
@@ -213,7 +214,8 @@
           addToCart(){
             this.$message({
               message:'加入购物车成功!',
-              type:'success'
+              type:'success',
+              offset:44
             })
             //1.获取购物车需要展示的信息
             const product = {}
@@ -230,6 +232,9 @@
             // this.$store.commit('addTocartList',product)
             //调用actions
             this.$store.dispatch('addTocartList',product)
+          },
+          buy(){
+            alert('支付成功:'+ this.goodsContent.realPrice + '元')
           }
         },
     }
