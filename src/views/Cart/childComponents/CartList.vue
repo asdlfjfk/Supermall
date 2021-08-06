@@ -1,6 +1,7 @@
 <template>
     <div class="cart-list">
       <scroll class="content" ref="bscroll">
+          <el-empty description="~购物车竟然是空的~" align="center" v-if="cartList.length === 0" class="text"></el-empty>
           <cart-list-item v-for="(item,index) in cartList" :product="item" :key="index"/>
       </scroll>
     </div>
@@ -36,5 +37,9 @@
   .content{
     height: 100%;
     overflow: hidden;
+  }
+
+  .text{
+    margin-top: 20px;
   }
 </style>
