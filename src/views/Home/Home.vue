@@ -1,5 +1,4 @@
 <template>
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <div id="home">
     <!--导航栏-->
     <nav-bar id="navhome">
